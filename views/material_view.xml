@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_material_form" model="ir.ui.view">
+            <field name="name">material.registration.form</field>
+            <field name="model">material.registration</field>
+            <field name="arch" type="xml">
+                <form string="Material Registration">
+                    <sheet>
+                        <notebook>
+
+                            <page string="Other Information">
+                                <group>
+                                    <field name="material_code"/>
+                                    <field name="material_name"/>
+                                    <field name="material_type"/>
+                                    <field name="material_buy_price"/>
+                                    <field name="supplier_id"/>
+                                </group>
+                            </page>                            
+                            <page string="Approvals">
+                                <!-- Placeholder for future fields -->
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_material_tree" model="ir.ui.view">
+            <field name="name">material.registration.tree</field>
+            <field name="model">material.registration</field>
+            <field name="arch" type="xml">
+                <tree string="Material Registration">
+                    <field name="material_code"/>
+                    <field name="material_name"/>
+                    <field name="material_type"/>
+                    <field name="material_buy_price"/>
+                    <field name="supplier_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_material" model="ir.actions.act_window">
+            <field name="name">Materials</field>
+            <field name="res_model">material.registration</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Hak Akses -->
+        <record id="access_material_registration_user" model="ir.model.access">
+            <field name="name">Material Registration User</field>
+            <field name="model_id" ref="model_material_registration"/>
+            <field name="group_id" ref="base.group_user"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <!-- Menu Item -->
+        <menuitem id="menu_material_root" name="Material Registration" sequence="10"/>
+        <menuitem id="menu_material" name="Materials" parent="menu_material_root" action="action_material" sequence="10"/>
+    </data>
+</odoo>
